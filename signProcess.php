@@ -86,7 +86,7 @@
                         <div class="col-md-8 mb-3">
                             <label for="root">가입 경로</label>
                             <?php $slectoption = $_POST['Root']; ?>
-                            <select class="custom-select d-block w-100" name="$slectoption" disabled>
+                            <select class="custom-select d-block w-100" name="Root" disabled>
                                 <option value="1">인터넷검색</option>
                                 <option value="2">지인추천</option>
                             </select>
