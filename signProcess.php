@@ -48,17 +48,17 @@
             <div class="input-form col-md-12 mx-auto">
                 <h4 class="mb-3">회원가입을 축하드립니다.</h4>
 
-                <form action="signuplist.php" class="validation-form" method="post">
+                <form action="/signuplist.php" class="validation-form" method="post">
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="name">이름</label>
-                            <input type="text" class="form-control" name="<?php echo $_POST["Name"]; ?>" value="<?php echo $_POST["Name"]; ?>" disabled>
+                            <input type="text" class="form-control" name="m_name" value="<?php echo $_POST["Name"]; ?>" disabled>
 
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="nickname">별명</label>
-                            <input type="text" class="form-control" name="<?php echo $_POST["Nickname"]; ?>" value="<?php echo $_POST["Nickname"]; ?>" disabled>
+                            <input type="text" class="form-control" name="m_nickname" value="<?php echo $_POST["Nickname"]; ?>" disabled>
                             <div class="invalid-feedback">
                                 별명을 입력해주세요.
                             </div>
@@ -66,26 +66,26 @@
                     </div>
                     <div class="mb-3">
                         <label for="email">이메일</label>
-                        <input type="email" class="form-control" name="<?php echo $_POST["Email"]; ?>" value="<?php echo $_POST["Email"]; ?>" disabled>
+                        <input type="email" class="form-control" name="m_email" value="<?php echo $_POST["Email"]; ?>" disabled>
                         <div class="invalid-feedback">
                             이메일을 입력해주세요.
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="address">주소</label>
-                        <input type="text" class="form-control" name="<?php echo $_POST["Address"]; ?>" value="<?php echo $_POST["Address"]; ?>" disabled>
+                        <input type="text" class="form-control" name="m_address" value="<?php echo $_POST["Address"]; ?>" disabled>
                         <div class="invalid-feedback">
                             주소를 입력해주세요.
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
-                        <input type="text" class="form-control" name="<?php echo $_POST["Address2"]; ?>" value="<?php echo $_POST["Address2"]; ?>" disabled>
+                        <input type="text" class="form-control" name="m_address2" value="<?php echo $_POST["Address2"]; ?>" disabled>
                     </div>
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <label for="code">추천인 코드</label>
-                            <input type="text" class="form-control" name="<?php echo $_POST["Code"]; ?> " value="<?php echo $_POST["Code"]; ?> " disabled>
+                            <input type="text" class="form-control" name="m_code " value="<?php echo $_POST["Code"]; ?> " disabled>
                             <div class="invalid-feedback">
                                 추천인 코드를 입력해주세요.
                             </div>
@@ -118,5 +118,49 @@
             });
         }, false);
     </script>
+
+<?php
+    $host = "localhost";
+    $user = "root";
+    $pw = "dkssud22@@";
+    $dbName = "testdata";
+
+    $conn = new mysqli($host, $user, $pw, $dbName);
+
+    /* DB 연결 확인 */
+    if($conn){ echo "Connection established"."<br>"; }
+    else{ die( 'Could not connect: ' . mysqli_error($conn) ); }
+
+
+    $sql = "SELECT * FROM signup";
+    $result = mysqli_query($conn, $sql);
+    while($row = mysqli_fetch_array($result)){
+        
+        echo $row['m_name'].'</br>';
+        echo $row['m_nickname'].'</br>';
+        echo $row['m_email'].'</br>';
+        echo $row['m_address'].'</br>';
+        echo $row['m_address2'].'</br>';
+        echo $row['m_code'].'</br>';
+
+    }
+
+    /* INSERT  */
+    $sql = "INSERT INTO signup(m_name, m_nickname, m_email, m_address, m_address2, m_code) 
+    VALUES
+    ('$_POST[m_name]','$_POST[m_nickname]','$_POST[m_email]','$_POST[m_address]','$_POST[m_address2]','$_POST[m_code]')";
+
+    
+// -- ('ujin','ulog','ugin@naver.com','ansan','hospital','aaa77')";
+
+    $result = mysqli_query($conn, $sql);
+ 	
+    if($result) { echo "insert success!"; }
+
+    else { echo "failure"; }
+    
+    mysqli_close($conn);
+?>
+
 </body>
 </html>

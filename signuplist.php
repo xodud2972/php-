@@ -10,10 +10,27 @@
     if($conn){ echo "Connection established"."<br>"; }
     else{ die( 'Could not connect: ' . mysqli_error($conn) ); }
 
-    /* INSERT 예제 */
-    $sql = "INSERT INTO signup(nname, nickname, email, aaddress, address2, code) 
+
+    $sql = "SELECT * FROM signup";
+    $result = mysqli_query($conn, $sql);
+    while($row = mysqli_fetch_array($result)){
+        
+        echo $row['m_name'].'</br>';
+        echo $row['m_nickname'].'</br>';
+        echo $row['m_email'].'</br>';
+        echo $row['m_address'].'</br>';
+        echo $row['m_address2'].'</br>';
+        echo $row['m_code'].'</br>';
+
+    }
+
+    /* INSERT  */
+    $sql = "INSERT INTO signup(m_name, m_nickname, m_email, m_address, m_address2, m_code) 
     VALUES
-    ('$_POST[Name]', '$_POST[Nickname]', '$_POST[Email]', '$_POST[Address]', '$_POST[Address2]', '$_POST[Code]')";
+    ('$_POST[m_name]','$_POST[m_nickname]','$_POST[m_email]','$_POST[m_address]','$_POST[m_address2]','$_POST[m_code]')";
+
+    
+// -- ('ujin','ulog','ugin@naver.com','ansan','hospital','aaa77')";
 
     $result = mysqli_query($conn, $sql);
  	
