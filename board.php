@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -231,13 +228,14 @@
                             <div class="widget-main no-padding">
                                 <div class="tickets-container">
                                     <ul class="tickets-list">
+                                 
                                     
-                            <?php   
 
+                            <?php   
                                 $host = "localhost";
                                 $user = "root";
-                                $pw = "1111";
-                                $dbName = "testdata";
+                                $pw = "1111"; //수정
+                                $dbName = "testdata"; //수정
 
                                 $conn = new mysqli($host, $user, $pw, $dbName);
 
