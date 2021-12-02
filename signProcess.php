@@ -48,17 +48,17 @@
             <div class="input-form col-md-12 mx-auto">
                 <h4 class="mb-3">회원가입을 축하드립니다.</h4>
 
-                <form action="signProcess.php" class="validation-form" method="post">
+                <form action="signuplist.php" class="validation-form" method="post">
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="name">이름</label>
-                            <input type="text" class="form-control" name="Name" value="<?php echo $_POST["Name"]; ?>" disabled>
+                            <input type="text" class="form-control" name="<?php echo $_POST["Name"]; ?>" value="<?php echo $_POST["Name"]; ?>" disabled>
 
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="nickname">별명</label>
-                            <input type="text" class="form-control" name="Nickname" value="<?php echo $_POST["Nickname"]; ?>" disabled>
+                            <input type="text" class="form-control" name="<?php echo $_POST["Nickname"]; ?>" value="<?php echo $_POST["Nickname"]; ?>" disabled>
                             <div class="invalid-feedback">
                                 별명을 입력해주세요.
                             </div>
@@ -66,37 +66,26 @@
                     </div>
                     <div class="mb-3">
                         <label for="email">이메일</label>
-                        <input type="email" class="form-control" name="Email" value="<?php echo $_POST["Email"]; ?>" disabled>
+                        <input type="email" class="form-control" name="<?php echo $_POST["Email"]; ?>" value="<?php echo $_POST["Email"]; ?>" disabled>
                         <div class="invalid-feedback">
                             이메일을 입력해주세요.
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="address">주소</label>
-                        <input type="text" class="form-control" name="Address" value="<?php echo $_POST["Address"]; ?>" disabled>
+                        <input type="text" class="form-control" name="<?php echo $_POST["Address"]; ?>" value="<?php echo $_POST["Address"]; ?>" disabled>
                         <div class="invalid-feedback">
                             주소를 입력해주세요.
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
-                        <input type="text" class="form-control" name="Address2" value="<?php echo $_POST["Address2"]; ?>" disabled>
+                        <input type="text" class="form-control" name="<?php echo $_POST["Address2"]; ?>" value="<?php echo $_POST["Address2"]; ?>" disabled>
                     </div>
                     <div class="row">
-                        <div class="col-md-8 mb-3">
-                            <label for="root">가입 경로</label>
-                            <?php $slectoption = $_POST['Root']; ?>
-                            <select class="custom-select d-block w-100" name="Root" disabled>
-                                <option value="1">인터넷검색</option>
-                                <option value="2">지인추천</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                가입 경로를 선택해주세요.
-                            </div>
-                        </div>
                         <div class="col-md-4 mb-3">
                             <label for="code">추천인 코드</label>
-                            <input type="text" class="form-control" name="Code" value="<?php echo $_POST["Code"]; ?> " disabled>
+                            <input type="text" class="form-control" name="<?php echo $_POST["Code"]; ?> " value="<?php echo $_POST["Code"]; ?> " disabled>
                             <div class="invalid-feedback">
                                 추천인 코드를 입력해주세요.
                             </div>
@@ -104,7 +93,7 @@
                     </div>
                     
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block"><a href="../index.php" style="color: white;">홈페이지로 이동</a></button>
+                    <button class="btn btn-primary btn-lg btn-block"><a href="/signuplist.php" style="color: white;">홈페이지로 이동</a></button>
 
                 </form>
 
