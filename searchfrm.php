@@ -96,8 +96,8 @@ $query = 'SELECT * FROM people
                               <textarea class="form-control" rows="3"  name="comment" disabled><?php echo $e; ?></textarea>
                             </div>
                             
-                            <div class="form-group">
-                             파일 : <a href="uploads/<?php echo $f; ?>" download=""><?php echo $f; ?></a>
+                            <div class="form-group"> 
+                            파일 : <?php echo $f; ?>
                             </div> 
                              
                             <button type="submit" class="btn btn-default">목록 페이지로 이동</button>

@@ -78,6 +78,7 @@
                             echo '<td>'. $row['contact'].'</td>';
                             echo '<td>'. $row['comment'].'</td>';
                             echo '<td>'. $row['file'].'</td>';
+
                             
                             echo '<td> <a type="button" class="btn btn-xs btn-info" href="searchfrm.php?action=edit & id='.$row['people_id'] . '" > 자세히 보기 </a> ';
                             echo ' <a  type="button" class="btn btn-xs btn-warning" href="edit.php?action=edit & id='.$row['people_id'] . '"> 수정하기 </a> ';

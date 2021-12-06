@@ -78,7 +78,7 @@
                             
                             <div class="form-group">
                              <label>파일업로드</label>
-                             <input name="file[]" type="file" multiple/> 
+                             <input name="file" type="file" multiple/> 
                             </div>
 
                             <button type="submit" class="btn btn-default" >저장</button>

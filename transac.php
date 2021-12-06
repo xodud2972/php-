@@ -57,16 +57,17 @@ include('header.php');
     
     
     $file = $_FILES['file']['name'];
-    json_encode($file);
-    print_r($file); 
-    $countfiles = count($_FILES['file']['name']); 
-    for($i=0;$i<$countfiles;$i++){
-    $filename = $file[$i];
-      // Upload file
-      move_uploaded_file($_FILES['file']['tmp_name'][$i],'upload/'.$filename);
-     }
+    $countfiles = count($file); 
+    $filearray = array();
 
+    for($i=0;$i<$countfiles;$i++){
+        $filename = $file[$i];
+        array_push($filearray, $filename);
+        move_uploaded_file($_FILES['file']['tmp_name'][$i],'upload/'.$filename);
+     }
     
+     
+     
     $fname = $_POST['firstname'];
     $lname = $_POST['lastname'];
     $mname = $_POST['Middlename'];
@@ -79,7 +80,7 @@ include('header.php');
         case 'add':
             $query = "INSERT INTO people
                 (first_name, last_name, mid_name, address, contact, comment, file)
-                VALUES ('" . $fname . "','" . $lname . "','" . $mname . "','" . $address . "','" . $contct . "','" . $comment . "','" . $file . "')";
+                VALUES ('" . $fname . "','" . $lname . "','" . $mname . "','" . $address . "','" . $contct . "','" . $comment . "','" . json_encode($filearray) . "')";
             echo $query;  
             mysqli_query($db, $query) or die('에러입니다');
             break;
