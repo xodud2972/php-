@@ -15,14 +15,14 @@ $query = 'SELECT * FROM people
                 $ads = $row['address'];
                 $ctt = $row['contact'];
                 $cmt = $row['comment'];
-                $filename = $row['file']['name'];
+                $filename = $row['file'];
               }
          
 ?>
 
 <html>
     <body>
-        <form method="post" action="../process/process_edit.php" enctype='multipart/form-data'>
+        <form method="post" action="../process/process_edit.php" enctype="multipart/form-data">
             <div><input type="hidden" name="id" value="<?php echo $id; ?>" /></div>
             <div><input name="firstname" value="<?=$fname?>"></div>
             <div><input name="lastname" value="<?=$lname?>"></div>
@@ -33,11 +33,12 @@ $query = 'SELECT * FROM people
                 <textarea class="form-control" rows="3" name="comment"><?=$cmt?></textarea>
             </div>
             <div>
-                <label value="<?=$filename?>"></label>
-                <input name="file" type="file" multiple />
+            <label for="files" downloads>기존 파일 목록 : <br>
+            <a href="../uploads/<?= $filename ?>" download><?= $filename ?></a> <br><br>
+                <input id="files" name="files[]" type="file" multiple />
             </div>
-            <button type="submit">저장</button>
-            <button type="reset">초기화</button>
+            <input type="submit"></input><br>
+            <a type="button" href="../view/index.php"> 목록으로 돌아가기 </a>
         </form>        
     </body>
 </html>

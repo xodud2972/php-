@@ -9,9 +9,17 @@
     $ads = $_POST['Address'];
     $ctt = $_POST['Contact'];
     $cmt = $_POST['comment'];
-    $filename = $_FILES['file']['name'];
+    $filename = $_FILES['files']['name'];
 
-// filename 자체가 type 이 array 로 들어온다. 파일 1개를 입력해도 Array 로 찍힌다.
+    // print_r($_FILES['files']['name']);
+    // echo $filename[0];
+    // echo $filename[1];
+    // exit;
+
+	$filearray = array();
+	for($i=0; $i<count($filename);$i++){
+		array_push($filearray, $filename[$i]);
+	}
 
     $query = 'UPDATE people SET 
         first_name = "'.$fname.'",
@@ -20,12 +28,15 @@
         address = "'.$ads.'",
         contact = "'.$ctt.'",
         comment = "'.$cmt.'",
-        file = "'.$filename.'"
+        file = "'.$filearray[0].'"
             WHERE people_id ="'.$id.'"
     ';
- 
-    die($query);
+
+//filearray 를 array가아닌 각각의 value 값을 넣도록 변환
+    
+//die($query); 
     $result = mysqli_query($conn,$query) or die(mysqli_error($conn));
+
 
 ?>
 
