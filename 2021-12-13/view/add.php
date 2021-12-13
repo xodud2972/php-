@@ -2,11 +2,9 @@
 include('../view/header.php')
 ?>
 <html>
-
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 </head>
-
 <body>
     <div id="wrapper">
         <!-- Navigation -->
@@ -65,7 +63,7 @@ include('../view/header.php')
                             <!-- onclick="clkBtn();" -->
                             <button class="btn btn-default" type="reset">초기화</button>
                         </form>
-                        <a type="button" href="../view/index.php"> 목록으로 돌아가기 </a>
+                        <a class="btn btn-default" type="button" href="../view/index.php"> 목록으로 돌아가기 </a>
                     </div>
                 </div>
             </div>
@@ -74,42 +72,6 @@ include('../view/header.php')
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
-    <script>
-        $("#ajax").click(function() {
-            if ($("#firstname").val().length == 0) {
-                alert("이름을 입력하세요.");
-                $("#firstname").focus();
-                return false;
-            }
-            if ($("#lastname").val().length == 0) {
-                alert("별명을 입력하세요.");
-                $("#lastname").focus();
-                return false;
-            }
-            if ($("#Middlename").val().length == 0) {
-                alert("성을 입력하세요.");
-                $("#Middlename").focus();
-                return false;
-            }
-            if ($("#Address").val().length == 0) {
-                alert("주소를 입력하세요.");
-                $("#Address").focus();
-                return false;
-            }
-            if ($("#Contact").val().length == 0) {
-                alert("연락처를 입력하세요.");
-                $("#Contact").focus();
-                return false;
-            }
-            if ($("#comment").val().length == 0) {
-                alert("소개를 입력하세요.");
-                $("#comment").focus();
-                return false;
-            } else {
-                return clkBtn();
-            }
-        });
-    </script>
     <script type="text/javascript">
         // 버튼 클릭 시 실행
         function clkBtn() {
@@ -148,5 +110,4 @@ include('../view/header.php')
     <script src="js/plugins/morris/morris-data.js"></script>
     <script src="js/taeyoung.js"></script>
 </body>
-
 </html>

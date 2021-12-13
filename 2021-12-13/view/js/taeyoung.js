@@ -1,5 +1,4 @@
 
-$(document).ready(function() {
     $("#ajax").click(function() {
         if ($("#firstname").val().length == 0) {
             alert("이름을 입력하세요.");
@@ -30,10 +29,10 @@ $(document).ready(function() {
             alert("소개를 입력하세요.");
             $("#comment").focus();
             return false;
+        } else {
+            return clkBtn();
         }
     });
-});
-
 
 
 

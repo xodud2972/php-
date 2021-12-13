@@ -18,7 +18,6 @@ while ($row = mysqli_fetch_array($result)) {
 	echo '</tr>';
 }
 ?>
-
 <script>
 	function button_event() {
 		if (confirm("정말 삭제하시겠습니까??") == true) { //확인
@@ -27,13 +26,9 @@ while ($row = mysqli_fetch_array($result)) {
 			return;
 		}
 	}
-
-	
-	// 버튼 클릭 시 실행
 	function clkBtn() {
 		// Get form
 		var form = $('#form1')[0];
-		// Create an FormData object 
 		var data = new FormData(form);
 		$.ajax({
 			type: "POST",

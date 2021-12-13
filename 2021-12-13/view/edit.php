@@ -4,7 +4,6 @@ include('header.php');
 include('../process/process_select_one.php')
 ?>
 <html>
-
 <body>
   <div id="wrapper">
     <!-- Navigation -->
@@ -62,7 +61,7 @@ include('../process/process_select_one.php')
                 <input type="file" name="files[]" value="" size="40" />
                 <input type="button" value="파일추가" onclick="attachFile.add()" style="margin-left:5px" />
               </div>
-              <button class="btn btn-default" type="button" onclick="clkBtn();">Ajax전송</button>
+              <button class="btn btn-default" type="button" onclick="clkBtn();">전송</button>
               <!-- <input class="btn btn-default" type="submit" id="submit"></input> -->
             </form>
             <a class="btn btn-default" type="button" href="../view/index.php"> 목록으로 돌아가기 </a>

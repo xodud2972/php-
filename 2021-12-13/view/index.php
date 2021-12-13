@@ -2,7 +2,6 @@
 include('../view/header.php')
 ?>
 <html>
-
 <body>
     <div id="wrapper">
         <!-- Navigation -->
@@ -49,8 +48,8 @@ include('../view/header.php')
                                     <th>주소</th>
                                     <th>연락처</th>
                                     <th>소개</th>
-                                    <th>파일명</th>
-                                    <th>파일명2</th>
+                                    <th>첨부파일(1)</th>
+                                    <th>첨부파일(2)</th>
                                     <th>회원관리</th>
                                 </tr>
                             </thead>

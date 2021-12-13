@@ -2,7 +2,6 @@
 include('header.php');
 ?>
 <html>
-
 <body>
   <div id="wrapper">
     <!-- Navigation -->
