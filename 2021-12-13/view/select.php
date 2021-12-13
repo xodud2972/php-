@@ -2,6 +2,7 @@
 include('header.php');
 ?>
 <html>
+
 <body>
   <div id="wrapper">
     <!-- Navigation -->
@@ -16,7 +17,6 @@ include('header.php');
         </button>
         <a class="navbar-brand" href="index.php">Taeyoung PHP&MySQL</a>
       </div>
-
       <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
@@ -27,7 +27,6 @@ include('header.php');
       </div>
       <!-- /.navbar-collapse -->
     </nav>
-
     <div id="page-wrapper">
       <div class="container-fluid">
         <!-- Page Heading -->
@@ -36,21 +35,16 @@ include('header.php');
             <h1 class="page-header">
               회원관리
             </h1>
-
           </div>
         </div>
         <!-- /.row -->
-
         <?php
         include('../process/process_select_one.php');
         ?>
-
-
         <div class="col-lg-12">
           <h2>회원정보 보기</h2>
           <div class="col-lg-6">
             <form>
-
               <div class="form-group"><input class="form-control" type="hidden" name="id" value="<?= $id ?>" /> </div>
               <div class="form-group"><input class="form-control" name="firstname" value="<?= $fname ?>" disabled> </div>
               <div class="form-group"><input class="form-control" name="lastname" value="<?= $lname ?>" disabled> </div>
@@ -62,30 +56,23 @@ include('header.php');
               </div>
               <div class="form-group">
                 <label for="files" downloads>기존 파일 목록 : <br>
-                  <a href="../uploads/<?= $filename ?>" download><?= $filename ?></a>
+                  <a href="../uploads/<?= $filename ?>" download><?= $filename ?></a><br>
+                  <a href="../uploads/<?= $filename2 ?>" download><?= $filename2 ?></a>
               </div>
-
-
             </form>
             <a class="btn btn-default" type="button" href="../view/index.php"> 목록으로 돌아가기 </a>
           </div>
         </div>
-
       </div>
       <!-- /.container-fluid -->
-
     </div>
     <!-- /#page-wrapper -->
-
   </div>
   <!-- /#wrapper -->
-
   <!-- jQuery -->
   <script src="js/jquery.js"></script>
-
   <!-- Bootstrap Core JavaScript -->
   <script src="js/bootstrap.min.js"></script>
-
   <!-- Morris Charts JavaScript -->
   <script src="js/plugins/morris/raphael.min.js"></script>
   <script src="js/plugins/morris/morris.min.js"></script>

@@ -1,5 +1,6 @@
 <?php
     include('../db/db.php');
+    
     $id = $_GET['id'];
     $query = 'SELECT * FROM people
                 WHERE
@@ -13,5 +14,6 @@
             $ctt = $row['contact'];
             $cmt = $row['comment'];
             $filename = $row['file'];
+            $filename2 = $row['file2'];
         }
 ?>

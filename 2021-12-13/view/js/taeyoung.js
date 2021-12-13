@@ -50,22 +50,24 @@ $(document).ready(function() {
 
             div.id = 'file' + o.idx;
 
-            var file = document.all ? document.createElement('<input name="files[]">') : document.createElement('input');
+            var file = document.all ? document.createElement('<input name="files2[]">') : document.createElement('input');
             file.type = 'file';
-            file.name = 'files[]';
+            file.name = 'files2[]';
             file.size = '40';
             file.id = 'fileField' + o.idx;
 
-                var btn = document.createElement('input');
-                btn.type = 'button';
-                btn.value = '파일삭제';
-                btn.onclick = function(){o.del(idx)}
-                btn.style.marginLeft = '5px';
-    
+            var btn = document.createElement('input');
+            btn.type = 'button';
+            btn.value = '파일삭제';
+            btn.onclick = function(){o.del(idx)}
+            btn.style.marginLeft = '5px';
+            console.log(file.id)
+            if(file.id == 'fileField0'){
                 div.appendChild(file);
                 div.appendChild(btn);
                 document.getElementById('attachFileDiv').appendChild(div);
                 o.idx++;
+            }
 
             
         },
