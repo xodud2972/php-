@@ -53,7 +53,6 @@ include('../include/header.php');
                                 </tr>
                             </thead>
                             <tbody>
-                                
                                 <?php 
                                 include('../process/process_select_all.php'); 
                                 ?>
