@@ -4,7 +4,8 @@
 -->
 <?php
 
-include('../db/db.php');
+include_once('../db/db.php');
+$db = db_open();
 
 $id = $_GET['id'];
 
@@ -16,7 +17,7 @@ $querySelectOneUser = sprintf(
     $id
 );
 
-$result = mysqli_query($conn, $querySelectOneUser) or die(mysqli_error($conn));
+$result = que($db, $querySelectOneUser);
 
 $row = mysqli_fetch_array($result);
 

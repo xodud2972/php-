@@ -5,6 +5,7 @@
 <?php
 function DeleteUser(){
 	include_once('../db/db.php');
+	$db = db_open();
 
 	$id = $_GET['id'];
 
@@ -25,7 +26,7 @@ function DeleteUser(){
 		'DELETE FROM t_people WHERE people_id=%d'
 		, $id);
 
-	$result = mysqli_query($conn, $queryDeleteUsert) or die(mysqli_error($conn));
+	que($db, $queryDeleteUsert);
 }
 
 DeleteUser();

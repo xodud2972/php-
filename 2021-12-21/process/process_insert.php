@@ -4,7 +4,8 @@
 -->
 <?php
 function InsertUser(){
-    include_once('../db/db.php');    
+    include_once('../db/db.php');
+    $db = db_open();    
 
     $firstName = $_POST['firstname'];
     $lastName = $_POST['lastname'];
@@ -18,8 +19,16 @@ function InsertUser(){
 
     for($i=0; $i<$FILE_COUNT; $i++){
         $tmp_Name = $_FILES["files"]["tmp_name"][$i];
-        $name = basename($_FILES["files"]["name"][$i]);
+        $name = basename($fileName[$i]);
         move_uploaded_file($tmp_Name, "$filePath/$name");
+        // $queryInsertFiles = sprintf(
+        //     "INSERT INTO t_file
+        //         (file_people_id, filename)
+        //     VALUES
+        //         ('%s', '%s')"
+        //     , $id, $name);
+        //     que($db, $queryInsertFiles);
+        
     }
     $queryInsertUser = sprintf(
     "INSERT INTO t_people
@@ -28,7 +37,7 @@ function InsertUser(){
         ('%s','%s','%s','%s','%s','%s')"
     ,$firstName, $lastName, $midName, $ads, $ctt, $cmt);
 
-    return mysqli_query($conn, $queryInsertUser) or die(mysqli_error($conn));
+    que($db, $queryInsertUser);
 }
 
 // function InsertUserFiles(){

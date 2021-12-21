@@ -3,8 +3,10 @@
     create by 엄태영 2021.12.16
 -->
 <?php
+include_once('../db/db.php');
+
 function SelectAllUser(){
-	include('../db/db.php');
+	$db = db_open();
 	$querySelectAllUser = 'SELECT people_id, first_name, last_name, mid_name, address, contact, comment, filename
 									FROM t_people
 								LEFT JOIN t_file
@@ -12,7 +14,7 @@ function SelectAllUser(){
 								ORDER BY people_id 
 							DESC';
 
-	$result = mysqli_query($conn, $querySelectAllUser) or die(mysqli_error($conn));
+	$result = que($db, $querySelectAllUser);
 
 	while ($row = mysqli_fetch_array($result)) {
 		$tempData["firstName"] = $row['first_name'];
@@ -23,27 +25,31 @@ function SelectAllUser(){
 		$tempData["cmt"] = $row['comment'];
 		$tempData["id"] = $row['people_id'];
 		$tempData["filename"] = $row['filename'];
+		
 		$resultData[] = $tempData;
 	}
 	
 	return $resultData;
-}
-function SelectAllFiles(){
-	include('../db/db.php');
-	$querySelectAllFiles = 'SELECT file_people_id, filename
-								FROM t_file
-								ORDER BY file_people_id
-							DESC';
-
-	$result = mysqli_query($conn, $querySelectAllFiles) or die(mysqli_error($conn));
-
-	while($row = mysqli_fetch_array($result)){
-		$tempData["file_people_id"] = $row['file_people_id'];
-		$tempData["filename"] = $row['filename'];
-		$fileData[] = $tempData;
-	}
 
 }
+
+
+// function SelectAllFiles(){
+// 	include('../db/db.php');
+// 	$querySelectAllFiles = 'SELECT file_people_id, filename
+// 								FROM t_file
+// 								ORDER BY file_people_id
+// 							DESC';
+
+// 	$result = mysqli_query($conn, $querySelectAllFiles) or die(mysqli_error($conn));
+
+// 	while($row = mysqli_fetch_array($result)){
+// 		$tempData["file_people_id"] = $row['file_people_id'];
+// 		$tempData["filename"] = $row['filename'];
+// 		$fileData[] = $tempData;
+// 	}
+
+// }
 ?>
 
 <script>

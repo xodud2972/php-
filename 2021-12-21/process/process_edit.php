@@ -4,7 +4,8 @@
 -->
 <?php
 function EditUser(){
-    include_once('../db/db.php');           
+    include_once('../db/db.php');     
+    $db = db_open();
 
     $id = $_POST['id'];
     $firstName = $_POST['firstname'];
@@ -38,8 +39,7 @@ function EditUser(){
             ",
         $firstName, $lastName, $mid_Name, $ads, $ctt, $cmt, $id);
         
-        mysqli_query($conn,$queryUpdateUser) or die(mysqli_error($conn));
+        que($db,$queryUpdateUser);
     }
 }
-EditUser();
 ?>
