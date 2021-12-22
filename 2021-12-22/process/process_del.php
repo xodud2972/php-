@@ -3,33 +3,34 @@
     create by 엄태영 2021.12.16
 -->
 <?php
-function DeleteUser(){
+
 	include_once('../db/db.php');
 	$db = db_open();
 
 	$id = $_GET['id'];
 
-	// $querySelectFiles = sprintf(
-	// 		'SELECT filename FROM t_file WHERE people_id=%d'
-	// 	,$id);
+	$querySelectFiles = sprintf(
+			'SELECT filename FROM t_file WHERE file_people_id=%d'
+		,$id);
+	
+	$result = mysqli_query($db, $querySelectFiles);
+	
+	while($row = mysqli_fetch_array($result)){
+		$del_file = "../uploads/" . $row['filename'];
+		echo $del_file;
+		if ($row['filename'] && is_file($del_file)) {
+			unlink($del_file);
+		}
+	}
+		
 
-	// $result = mysqli_query($conn, $querySelectFiles);
-	// $row = mysqli_fetch_array($result);
-
-	// $del_file = "../uploads/" . $row['file'];
-
-	// if ($row['file'] && is_file($del_file)) {
-	// 	unlink($del_file);
-	// }
-
-	$queryDeleteUsert = sprintf(
+	$queryDeleteUser = sprintf(
 		'DELETE FROM t_people WHERE people_id=%d'
 		, $id);
 
-	que($db, $queryDeleteUsert);
-}
+	que($db, $queryDeleteUser);
 
-DeleteUser();
+	
 ?>
 
 <script type="text/javascript">

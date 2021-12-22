@@ -64,14 +64,11 @@ $resultData = SelectAllUser();
                                     <td><?= $resultData[$index]["add"] ?></td>
                                     <td><?= $resultData[$index]["ctt"] ?></td>
                                     <td><?= $resultData[$index]["cmt"] ?></td>
-                                    <td>
-                                        <a href="../uploads/<?= $resultData[$index]['filename'] ?>" download> <?= $resultData[$index]['filename'] ?> </a>
-                                    </td>
+                                    <td> <?= $resultData[$index]['filename'] ?> 개 </td>
                                     <td>
                                         <a class="btn btn-xs btn-info" type="button" href="../view/select.php?&id=<?= $resultData[$index]['id'] ?>"> 자세히 보기 </a>
                                         <a class="btn btn-xs btn-warning" type="button" href="../view/edit.php?&id=<?= $resultData[$index]['id'] ?>"> 수정하기 </a>
                                         <a class="btn btn-xs btn-danger" type="button" href="../process/process_del.php?&id=<?= $resultData[$index]['id'] ?>">삭제하기</a>
-                                        
                                     </td>
                                 </tr>
                                 <?

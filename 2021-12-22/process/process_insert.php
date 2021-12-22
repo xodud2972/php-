@@ -3,7 +3,7 @@
     create by 엄태영 2021.12.16
 -->
 <?php
-function InsertUser(){
+
     include_once('../db/db.php');
     $db = db_open();    
 
@@ -26,46 +26,27 @@ function InsertUser(){
     ,$firstName, $lastName, $midName, $ads, $ctt, $cmt);
 
     que($db, $queryInsertUser);
-
-
+    
+    echo $queryInsertUser;
+  
 
 
     for($i=0; $i<$FILE_COUNT; $i++){
         $tmp_Name = $_FILES["files"]["tmp_name"][$i];
         $name = basename($fileName[$i]);
         move_uploaded_file($tmp_Name, "$filePath/$name");
+
         $queryInsertFiles = sprintf(
             "INSERT INTO t_file
                 (file_people_id, filename)
             VALUES
-                ('%s', '%s')"
-            , $id, $name);
-        que($db, $queryInsertFiles);
+                (LAST_INSERT_ID(), '%s')"
+            , $fileName[$i]);
         
+        que($db, $queryInsertFiles);
+
+        echo $queryInsertFiles;
     }
-}
-
-// function InsertUserFiles(){
-//     include_once('../db/db.php');
-//     $id = $_POST['id'];
-//     $fileName = $_FILES['files']['name'];
-//     $FILE_COUNT = count($fileName);
-//     $filePath = "../uploads";
-
-//     for($i=0; $i<$FILE_COUNT; $i++){
-//         $tmp_Name = $_FILES["files"]["tmp_name"][$i];
-//         $name = basename($_FILES["files"]["name"][$i]);
-//         move_uploaded_file($tmp_Name, "$filePath/$name");
-//     }
-//     $queryInsertFiles = sprintf(
-//         "INSERT INTO t_file
-//             (file_people_id, filename)        
-//         VALUES
-//             ('%d' , '%s')"
-//     ,$id, $fileName);
-//     die($queryInsertFiles);
-//     return mysqli_query($conn, $queryInsertFiles) or die(mysqli_error($conn));
-// }
-InsertUser();
-// InsertUserFiles();
+    
+    
 ?>

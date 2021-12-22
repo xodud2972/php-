@@ -34,23 +34,6 @@ function SelectAllUser(){
 
 }
 
-
-// function SelectAllFiles(){
-// 	include('../db/db.php');
-// 	$querySelectAllFiles = 'SELECT file_people_id, filename
-// 								FROM t_file
-// 								ORDER BY file_people_id
-// 							DESC';
-
-// 	$result = mysqli_query($conn, $querySelectAllFiles) or die(mysqli_error($conn));
-
-// 	while($row = mysqli_fetch_array($result)){
-// 		$tempData["file_people_id"] = $row['file_people_id'];
-// 		$tempData["filename"] = $row['filename'];
-// 		$fileData[] = $tempData;
-// 	}
-
-// }
 ?>
 
 <script>

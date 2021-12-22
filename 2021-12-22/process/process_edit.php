@@ -3,7 +3,6 @@
     create by 엄태영 2021.12.16
 -->
 <?php
-function EditUser(){
     include_once('../db/db.php');     
     $db = db_open();
 
@@ -19,27 +18,38 @@ function EditUser(){
     $FILE_COUNT = count($fileName);
     $filePath = "../uploads";
     
+
+    $queryUpdateUser = sprintf(
+        "UPDATE t_people SET 
+            first_name = '%s',
+            last_name = '%s',
+            mid_name = '%s',
+            address = '%s',
+            contact = '%s',
+            comment = '%s'
+        WHERE people_id ='%d'
+        ",
+    $firstName, $lastName, $mid_Name, $ads, $ctt, $cmt, $id);
+    echo $queryUpdateUser;
+    que($db,$queryUpdateUser);
+
+
     for($i=0; $i<$FILE_COUNT; $i++){
 
         $tmp_Name = $_FILES["files"]["tmp_name"][$i];
-
         $name = basename($_FILES["files"]["name"][$i]);
-
         move_uploaded_file($tmp_Name, "$filePath/$name");
-
-        $queryUpdateUser = sprintf(
-            "UPDATE t_people SET 
-                first_name = '%s',
-                last_name = '%s',
-                mid_name = '%s',
-                address = '%s',
-                contact = '%s',
-                comment = '%s'
-            WHERE people_id ='%d'
-            ",
-        $firstName, $lastName, $mid_Name, $ads, $ctt, $cmt, $id);
         
-        que($db,$queryUpdateUser);
+        $queryUpdateFiles = sprintf(
+            "UPDATE t_file SET
+            filename = '%s'
+        WHERE file_people_id = '%d'
+            ", $fileName[$i], $id);
+        
+        que($db, $queryUpdateFiles);
+
+        echo $queryUpdateFiles;
     }
-}
+    
+
 ?>

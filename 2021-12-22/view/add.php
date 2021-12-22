@@ -84,7 +84,7 @@ function BtnInsert() {
             success: function(data) {
                 console.log(data);
                 //location="../view/index.php"
-                location="../view/index.php"
+                //location="../view/index.php"
             },
             error: function(e) {
                 console.log("ERROR : ", e);

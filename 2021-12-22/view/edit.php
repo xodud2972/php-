@@ -52,7 +52,13 @@ include('../process/process_select_one.php')
               </div>
               <div class="form-group">
                 <label downloads>기존 파일 목록 : <br>
-                  <a href="../uploads/<?= $filename ?>" download><?= $filename ?></a><br>
+                <?
+						for($index = 0; $index < sizeof($filename); $index++) {
+					?>
+                  <a href="../uploads/<?= $filename[$index] ?>" download><?= $filename[$index] ?></a><br>
+            <?
+						}
+					?>
               </div>
               <div class="form-group" id="attachFileDiv">
                 <input type="file" name="files[]" value="" size="40" multiple/>
@@ -89,7 +95,7 @@ function BtnEdit() {
           success: function(data) {
             // 전송 후 성공 시 실행 코드
             console.log(data);
-            location="../view/index.php"
+            //location="../view/index.php"
           },
           error: function(e) {
             // 전송 후 에러 발생 시 실행 코드
