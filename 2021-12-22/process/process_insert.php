@@ -28,7 +28,12 @@
     que($db, $queryInsertUser);
     
     echo $queryInsertUser;
-  
+
+
+    $querySelectLastId = "SELECT LAST_INSERT_ID() as lastId";
+    $exceSelectLastId = que($db, $querySelectLastId);
+    $lastId = mysqli_fetch_array($exceSelectLastId);
+    echo $lastId['lastId'];
 
 
     for($i=0; $i<$FILE_COUNT; $i++){
@@ -36,12 +41,14 @@
         $name = basename($fileName[$i]);
         move_uploaded_file($tmp_Name, "$filePath/$name");
 
+       
+        
         $queryInsertFiles = sprintf(
             "INSERT INTO t_file
                 (file_people_id, filename)
             VALUES
-                (LAST_INSERT_ID(), '%s')"
-            , $fileName[$i]);
+                ('%s', '%s')"
+            ,$lastId['lastId'] ,$fileName[$i]);
         
         que($db, $queryInsertFiles);
 
