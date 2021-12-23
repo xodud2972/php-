@@ -3,6 +3,7 @@ include('../db/db.php');
 include('../include/header.php');
 ?>
 <body>
+
   <div id="wrapper">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="navbar-header">
@@ -47,28 +48,5 @@ include('../include/header.php');
   <script src="../js/jquery.js"></script>
   <script src="../js/bootstrap.min.js"></script>
 
-<script>
-    function BtnEdit() {
-        $.ajax({
-          type: "POST",
-          enctype: 'multipart/form-data',
-          url: '../process/process_del.php', // form을 전송할 실제 파일경로
-          data: data,
-          processData: false,
-          contentType: false,
-          cache: false,
-          timeout: 600000,
-          success: function(data) {
-            // 전송 후 성공 시 실행 코드
-            console.log(data);
-            location="../view/index.php"
-          },
-          error: function(e) {
-            // 전송 후 에러 발생 시 실행 코드
-            console.log("ERROR : ", e);
-          }
-        });
-      }
-</script>
 </body>
 </html>

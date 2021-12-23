@@ -1,5 +1,5 @@
 <!-- 
-  index.php에서 수정 버튼을 눌러서 보이는 회원수정 페이지입니다.
+  User Edit Page.
   create by 엄태영 2021.12.16
  -->
 <?php
@@ -41,6 +41,7 @@ include('../process/process_select_one.php')
           <div class="col-lg-6">
 
             <form id="form1" method="post" class="table_write">
+              <input type="hidden" value="edit" name="action" class="validation-form">
               <div class="form-group"><input class="form-control" name="id"         value="<?= $id ?>"          type="hidden" /></div>
               <div class="form-group"><input class="form-control" name="firstname"  value="<?= $firstName ?>"   id="firstname"></div>
               <div class="form-group"><input class="form-control" name="lastname"   value="<?= $lastName ?>"    id="lastname"></div>
@@ -54,7 +55,7 @@ include('../process/process_select_one.php')
                 <label downloads>기존 파일 목록 : <br>
                 <?
 						for($index = 0; $index < sizeof($filename); $index++) {
-					?>
+					    ?>
                   <a href="../uploads/<?= $filename[$index] ?>" download><?= $filename[$index] ?></a><br>
             <?
 						}
@@ -76,17 +77,15 @@ include('../process/process_select_one.php')
   <script src="../js/bootstrap.min.js"></script>
   <script>
     
-/** 
-  AJAX
-  create by 엄태영 2021.12.16
- **/
+
+ // AJAX
 function BtnEdit() {
         var form = $('#form1')[0];
         var data = new FormData(form);
         $.ajax({
           type: "POST",
           enctype: 'multipart/form-data',
-          url: '../process/process_edit.php', // form을 전송할 실제 파일경로
+          url: '../process/process_All.php', // form을 전송할 실제 파일경로
           data: data,
           processData: false,
           contentType: false,
@@ -108,8 +107,8 @@ function BtnEdit() {
 
 
 /**
-    BtnEdit()
-    create by 엄태영 2021.12.16
+    @return BtnEdit()
+    create by 엄태영 2021.12.23
 **/   
 $("#editAjax").click(function() {
     if ($("#firstname").val().length == 0) {
@@ -145,8 +144,6 @@ $("#editAjax").click(function() {
         return BtnEdit();
     }
 });
-
-
   </script>
 </body>
 </html>

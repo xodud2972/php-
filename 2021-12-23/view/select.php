@@ -1,10 +1,11 @@
 <!-- 
-  index.php에서 자세히보기 버튼을 눌러서 보이는 상세페이지입니다.
+  User Select Detail Page.
   create by 엄태영 2021.12.16
  -->
 <?php
 include('../include/header.php');
 ?>
+
 <body>
   <div id="wrapper">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -42,23 +43,23 @@ include('../include/header.php');
           <div class="col-lg-6">
             <form>
               <div class="form-group"><input class="form-control" type="hidden" name="id" value="<?= $id ?>" /> </div>
-              <div class="form-group"><input class="form-control" name="firstname"        value="<?= $firstName ?>" disabled> </div>
-              <div class="form-group"><input class="form-control" name="lastname"         value="<?= $lastName ?>" disabled> </div>
-              <div class="form-group"><input class="form-control" name="Middlename"       value="<?= $mid_Name ?>" disabled> </div>
-              <div class="form-group"><input class="form-control" name="Address"          value="<?= $ads ?>" disabled> </div>
-              <div class="form-group"><input class="form-control" name="Contact"          value="<?= $ctt ?>" disabled> </div>
+              <div class="form-group"><input class="form-control" name="firstname" value="<?= $firstName ?>" disabled> </div>
+              <div class="form-group"><input class="form-control" name="lastname" value="<?= $lastName ?>" disabled> </div>
+              <div class="form-group"><input class="form-control" name="Middlename" value="<?= $mid_Name ?>" disabled> </div>
+              <div class="form-group"><input class="form-control" name="Address" value="<?= $ads ?>" disabled> </div>
+              <div class="form-group"><input class="form-control" name="Contact" value="<?= $ctt ?>" disabled> </div>
               <div class="form-group">
                 <textarea class="form-control" rows="3" name="comment" disabled><?= $cmt ?></textarea>
               </div>
               <div class="form-group">
                 <label for="files" downloads>기존 파일 목록 : <br>
-          <?
-						for($index = 0; $index < sizeof($filename); $index++) {
-					?>
-                  <a href="../uploads/<?= $filename[$index] ?>" download><?= $filename[$index] ?></a><br>
-            <?
-						}
-					?>
+                  <?
+                  for ($index = 0; $index < sizeof($filename); $index++) {
+                  ?>
+                    <a href="../uploads/<?= $filename[$index] ?>" download><?= $filename[$index] ?></a><br>
+                  <?
+                  }
+                  ?>
               </div>
             </form>
             <a class="btn btn-default" type="button" href="../view/index.php"> 목록으로 돌아가기 </a>
@@ -70,4 +71,5 @@ include('../include/header.php');
   <script src="../js/jquery.js"></script>
   <script src="../js/bootstrap.min.js"></script>
 </body>
-</html> 
+
+</html>

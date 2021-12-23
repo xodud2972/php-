@@ -1,5 +1,5 @@
 <!-- 
-  index.php에서 추가 버튼을 눌러서 보이는 회원추가 페이지입니다.
+    User Add Page.
   create by 엄태영 2021.12.16
  -->
 <?php
@@ -65,17 +65,15 @@ include('../include/header.php');
 </body>
 
 <script>
-/**  
-    AJAX.
-    create by 엄태영 2021.12.16
- **/
+  
+ // AJAX
 function BtnInsert() {
         var form = $('#form1')[0];
         var data = new FormData(form);
         $.ajax({
             type: "POST",
             enctype: 'multipart/form-data',
-            url: '../process/process_insert.php', 
+            url: '../process/process_All.php', 
             data: data,
             processData: false,
             contentType: false,
@@ -93,7 +91,6 @@ function BtnInsert() {
 
 
 
-    
 /**
     @return BtnInsert()
     create by 엄태영 2021.12.16

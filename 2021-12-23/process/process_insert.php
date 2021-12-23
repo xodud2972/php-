@@ -1,9 +1,9 @@
 <!-- 
-	add.php인 회원추가 페이지에서 입력한 데이터를 insert 하기 위한 코드입니다.
-    create by 엄태영 2021.12.16
+	User Insert Process
+    Create by Taeyoung 2021-12-23
 -->
 <?php
-
+function userInsert(){
     include_once('../db/db.php');
     $db = db_open();    
 
@@ -50,5 +50,5 @@ if($fileName[0] != ""){
 
     }
 }
-    
+}
 ?>

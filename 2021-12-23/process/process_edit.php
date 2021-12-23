@@ -1,8 +1,9 @@
 <!-- 
-	edit.php인 회원수정 페이지에서 해당 데이터를 UPDATE 하기 위한 코드입니다.
-    create by 엄태영 2021.12.16
+	User Edit Process
+    Create by Taeyoung 2021-12-23
 -->
 <?php
+function userEdit(){
 include_once('../db/db.php');
 $db = db_open();
 
@@ -43,8 +44,6 @@ $queryDeleteUser = sprintf(
 
 que($db, $queryDeleteUser);
 
-
-
 $queryInsertUser = sprintf(
     "INSERT INTO t_people
         (first_name, last_name, mid_name, address, contact, comment)
@@ -84,5 +83,5 @@ if ($fileName[0] != "") {
         echo $queryInsertFiles;
     }
 }
-
+}
 ?>

@@ -1,6 +1,6 @@
 <!-- 
-	index.php인 메인페이지에 DB데이터 전체를 보여주는 코드입니다.
-    create by 엄태영 2021.12.16
+	Index Page Process + Pagination Code
+    Create by Taeyoung 2021-12-23
 -->
 <?php
 include_once('../db/db.php');
@@ -9,30 +9,14 @@ function SelectAllUser()
 {
 	$db = db_open();
 
-	// 현재 페이지 번호 받아오기
 	if (isset($_GET["page"])) {
-		$page = $_GET["page"]; // 하단에서 다른 페이지 클릭하면 해당 페이지 값 가져와서 보여줌
+		$page = $_GET["page"];
 	} else {
-		$page = 1; // 게시판 처음 들어가면 1페이지로 시작
+		$page = 1; 
 	}
-
-	$sql = que_Paging("SELECT * FROM t_people");
-
-	$total_record = mysqli_num_rows($sql);                      // 불러올 게시물 총 개수
-	$list = 5;                                                  // 한 페이지에 보여줄 게시물 개수
-	$block_cnt = 5;                                             // 하단에 표시할 블록 당 페이지 개수
-	$block_num = ceil($page / $block_cnt);                      // 현재 페이지 블록
-	$block_start = (($block_num - 1) * $block_cnt) + 1;         // 블록의 시작 번호
-	$block_end = $block_start + $block_cnt - 1;                 // 블록의 마지막 번호
-
-	$total_page = ceil($total_record / $list);                  // 페이징한 페이지 수
-	if ($block_end > $total_page) {
-		$block_end = $total_page;                               // 블록 마지막 번호가 총 페이지 수보다 크면 마지막 페이지 번호가 총 페이지 수
-	}
-	$total_block = ceil($total_page / $block_cnt);              // 블록의 총 개수
-	$page_start = ($page - 1) * $list;                          // 페이지의 시작 (SQL문에서 LIMIT 조건 걸 때 사용)
-
-
+                   
+	$list = 5;                                                   
+	$page_start = ($page - 1) * $list;  
 
 
 	$querySelectAllUser = sprintf('SELECT people_id, first_name, last_name, mid_name, address, contact, comment,  COUNT(filename)  AS filename
@@ -62,16 +46,10 @@ function SelectAllUser()
 
 	return $resultData;
 }
-
-
-
 ?>
 
 <script>
-	/** 
- 	index.php인 메인페이지에서 삭제버튼 클릭시 AJAX를 이용하여 process_del.php로 전송되는 코드입니다.
-	create by 엄태영 2021.12.16
-**/
+	//AJAX
 	function clkBtn() {
 		var form = $('#form1')[0];
 		var data = new FormData(form);
