@@ -95,7 +95,7 @@ function BtnEdit() {
           success: function(data) {
             // 전송 후 성공 시 실행 코드
             console.log(data);
-            //location="../view/index.php"
+            location="../view/index.php"
           },
           error: function(e) {
             // 전송 후 에러 발생 시 실행 코드

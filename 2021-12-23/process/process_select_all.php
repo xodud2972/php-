@@ -5,15 +5,45 @@
 <?php
 include_once('../db/db.php');
 
-function SelectAllUser(){
+function SelectAllUser()
+{
 	$db = db_open();
-	$querySelectAllUser = 'SELECT people_id, first_name, last_name, mid_name, address, contact, comment,  COUNT(filename)  AS filename
-								FROM t_people
-							LEFT JOIN t_file
-							ON t_people.people_id = t_file.file_people_id
-							GROUP BY t_people.people_id
-							ORDER BY people_id 
-							DESC';
+
+	// 현재 페이지 번호 받아오기
+	if (isset($_GET["page"])) {
+		$page = $_GET["page"]; // 하단에서 다른 페이지 클릭하면 해당 페이지 값 가져와서 보여줌
+	} else {
+		$page = 1; // 게시판 처음 들어가면 1페이지로 시작
+	}
+
+	$sql = que_Paging("SELECT * FROM t_people");
+
+	$total_record = mysqli_num_rows($sql);                      // 불러올 게시물 총 개수
+	$list = 5;                                                  // 한 페이지에 보여줄 게시물 개수
+	$block_cnt = 5;                                             // 하단에 표시할 블록 당 페이지 개수
+	$block_num = ceil($page / $block_cnt);                      // 현재 페이지 블록
+	$block_start = (($block_num - 1) * $block_cnt) + 1;         // 블록의 시작 번호
+	$block_end = $block_start + $block_cnt - 1;                 // 블록의 마지막 번호
+
+	$total_page = ceil($total_record / $list);                  // 페이징한 페이지 수
+	if ($block_end > $total_page) {
+		$block_end = $total_page;                               // 블록 마지막 번호가 총 페이지 수보다 크면 마지막 페이지 번호가 총 페이지 수
+	}
+	$total_block = ceil($total_page / $block_cnt);              // 블록의 총 개수
+	$page_start = ($page - 1) * $list;                          // 페이지의 시작 (SQL문에서 LIMIT 조건 걸 때 사용)
+
+
+
+
+	$querySelectAllUser = sprintf('SELECT people_id, first_name, last_name, mid_name, address, contact, comment,  COUNT(filename)  AS filename
+						FROM t_people
+						LEFT JOIN t_file
+						ON t_people.people_id = t_file.file_people_id
+						GROUP BY t_people.people_id
+						ORDER BY people_id 
+						DESC LIMIT %s, %s ',
+						$page_start, $list);
+
 
 	$result = que($db, $querySelectAllUser);
 
@@ -26,32 +56,19 @@ function SelectAllUser(){
 		$tempData["cmt"] = $row['comment'];
 		$tempData["id"] = $row['people_id'];
 		$tempData["filename"] = $row['filename'];
-		
+
 		$resultData[] = $tempData;
 	}
-	
-	return $resultData;
 
+	return $resultData;
 }
+
+
 
 ?>
 
 <script>
-
-/** 
- 	index.php인 메인페이지에서 삭제버튼 클릭시 삭제여부를 재확인하는 코드입니다..
-	create by 엄태영 2021.12.16
-**/
-	function delChecking() {
-		if (confirm("정말 삭제하시겠습니까??") == true) { //확인
-			document.form.submit();
-		} else { //취소
-			return false;
-		}
-	}
-
-	
-/** 
+	/** 
  	index.php인 메인페이지에서 삭제버튼 클릭시 AJAX를 이용하여 process_del.php로 전송되는 코드입니다.
 	create by 엄태영 2021.12.16
 **/
@@ -70,6 +87,7 @@ function SelectAllUser(){
 			success: function(data) {
 				// 전송 후 성공 시 실행 코드
 				console.log(data);
+				location.href = '../mvc/view/index.php';
 			},
 			error: function(e) {
 				// 전송 후 에러 발생 시 실행 코드

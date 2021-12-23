@@ -3,60 +3,86 @@
     create by 엄태영 2021.12.16
 -->
 <?php
-    include_once('../db/db.php');     
-    $db = db_open();
+include_once('../db/db.php');
+$db = db_open();
 
-    $id = $_POST['id'];
-    $firstName = $_POST['firstname'];
-    $lastName = $_POST['lastname'];
-    $mid_Name = $_POST['Middlename'];
-    $ads = $_POST['Address'];
-    $ctt = $_POST['Contact'];
-    $cmt = $_POST['comment'];	
-    
-    $fileName = $_FILES['files']['name'];
-    $FILE_COUNT = count($fileName);
-    $filePath = "../uploads";
-    
+$id = $_POST['id'];
+$firstName = $_POST['firstname'];
+$lastName = $_POST['lastname'];
+$mid_Name = $_POST['Middlename'];
+$ads = $_POST['Address'];
+$ctt = $_POST['Contact'];
+$cmt = $_POST['comment'];
 
-    $queryUpdateUser = sprintf(
-        "UPDATE t_people SET 
-            first_name = '%s',
-            last_name = '%s',
-            mid_name = '%s',
-            address = '%s',
-            contact = '%s',
-            comment = '%s'
-        WHERE people_id ='%d'
-        ",
-    $firstName, $lastName, $mid_Name, $ads, $ctt, $cmt, $id);
-
-    que($db,$queryUpdateUser);
+$fileName = $_FILES['files']['name'];
+$FILE_COUNT = count($fileName);
+$filePath = "../uploads";
 
 
 
-    $querySelectLastId = "SELECT LAST_INSERT_ID() as lastId";
-    $exceSelectLastId = que($db, $querySelectLastId);
-    $lastId = mysqli_fetch_array($exceSelectLastId);
+$querySelectFiles = sprintf(
+    'SELECT filename FROM t_file WHERE file_people_id=%d',
+    $id
+);
 
+$result = mysqli_query($db, $querySelectFiles);
 
-
-    for($i=0; $i<$FILE_COUNT; $i++){
-
-        $tmp_Name = $_FILES["files"]["tmp_name"][$i];
-        $name = basename($_FILES["files"]["name"][$i]);
-        move_uploaded_file($tmp_Name, "$filePath/$name");
-        
-        $queryUpdateFiles = sprintf(
-            "UPDATE t_file SET
-                filename = '%s'
-        WHERE file_people_id = '%d'
-            ", $fileName, $id);
-        
-        que($db, $queryUpdateFiles);
-
-        echo $queryUpdateFiles;
+while ($row = mysqli_fetch_array($result)) {
+    $del_file = "../uploads/" . $row['filename'];
+    echo $del_file;
+    if ($row['filename'] && is_file($del_file)) {
+        unlink($del_file);
     }
-    
+}
+
+
+$queryDeleteUser = sprintf(
+    'DELETE FROM t_people WHERE people_id=%d',
+    $id
+);
+
+que($db, $queryDeleteUser);
+
+
+
+$queryInsertUser = sprintf(
+    "INSERT INTO t_people
+        (first_name, last_name, mid_name, address, contact, comment)
+    VALUES 
+        ('%s','%s','%s','%s','%s','%s')",
+    $firstName,
+    $lastName,
+    $mid_Name,
+    $ads,
+    $ctt,
+    $cmt
+);
+
+que($db, $queryInsertUser);
+
+$querySelectLastId = "SELECT LAST_INSERT_ID() as lastId";
+$exceSelectLastId = que($db, $querySelectLastId);
+$lastId = mysqli_fetch_array($exceSelectLastId);
+
+if ($fileName[0] != "") {
+    for ($i = 0; $i < $FILE_COUNT; $i++) {
+        $tmp_Name = $_FILES["files"]["tmp_name"][$i];
+        $name = basename($fileName[$i]);
+        move_uploaded_file($tmp_Name, "$filePath/$name");
+
+        $queryInsertFiles = sprintf(
+            "INSERT INTO t_file
+                (file_people_id, filename)
+            VALUES
+                ('%s', '%s')",
+            $lastId['lastId'],
+            $fileName[$i]
+        );
+
+        que($db, $queryInsertFiles);
+
+        echo $queryInsertFiles;
+    }
+}
 
 ?>
