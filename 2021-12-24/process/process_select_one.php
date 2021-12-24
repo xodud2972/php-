@@ -32,7 +32,7 @@ $ctt = $row['contact'];
 $cmt = $row['comment'];
 
 $querySelectOneUserFiles = sprintf(
-    ' SELECT filename
+    ' SELECT filename, file_id
             FROM t_file
         INNER JOIN t_people
             ON t_people.people_id = t_file.file_people_id
@@ -43,6 +43,7 @@ $result2 = que($db, $querySelectOneUserFiles);
 
 while($row2 = mysqli_fetch_array($result2)){
     $filename[] = $row2['filename'];
+    $file_id[] = $row2['file_id'];
 }
 que_close($db);
 ?>
