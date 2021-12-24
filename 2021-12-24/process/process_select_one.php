@@ -34,7 +34,7 @@ $cmt = $row['comment'];
 $querySelectOneUserFiles = sprintf(
     ' SELECT filename
             FROM t_file
-        LEFT JOIN t_people
+        INNER JOIN t_people
             ON t_people.people_id = t_file.file_people_id
         WHERE t_people.people_id = %d'
     ,$id
@@ -44,4 +44,5 @@ $result2 = que($db, $querySelectOneUserFiles);
 while($row2 = mysqli_fetch_array($result2)){
     $filename[] = $row2['filename'];
 }
+que_close($db);
 ?>

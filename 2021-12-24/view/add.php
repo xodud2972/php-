@@ -81,7 +81,8 @@ function BtnInsert() {
             timeout: 600000,
             success: function(data) {
                 console.log(data);
-                location="../view/index.php"
+                location="../view/index.php";
+                alert('회원이 추가되었습니다.');
             },
             error: function(e) {
                 console.log("ERROR : ", e);

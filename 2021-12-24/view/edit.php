@@ -99,6 +99,7 @@ function BtnEdit() {
             // 전송 후 성공 시 실행 코드
             console.log(data);
             location="../view/index.php";
+            alert('수정이 완료되었습니다.');
           },
           error: function(e) {
             // 전송 후 에러 발생 시 실행 코드

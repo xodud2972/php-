@@ -81,5 +81,6 @@ if ($fileName[0] != "") {
         que($db, $queryInsertFiles);
     }
 }
+que_close($db);
 }
 ?>
