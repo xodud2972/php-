@@ -16,6 +16,6 @@
 
 <script>
     function bakcPage(){
-        history.back();
+        window.location = document.referrer;
     }
 </script>
