@@ -1,3 +1,4 @@
+
 <?php
 
     include_once('../db/db.php');
@@ -8,10 +9,11 @@
 
 if(isset($id)){
     
-    $queryDelFile = sprintf('DELETE FROM t_file WHERE file_id = %s', $id);
+    $queryDelFile = sprintf('DELETE FROM t_file WHERE file_id = %s',  $id);
     
     echo 'query : ';
-    die($queryDelFile);
+    echo $queryDelFile;
+    
     que($db,$queryDelFile);
 }
 ?>
