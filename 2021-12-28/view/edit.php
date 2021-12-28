@@ -78,6 +78,7 @@ include_once('../process/process_del_filelist.php')
                 <input type="file" name="files[]" value="" size="40" multiple />
               </div>
               <button id="editAjax" class="btn btn-default" type="button">전송</button>
+              <button type="button" class="btn btn-default" onclick="location.reload();">파일삭제 후 적용</button>
             </form>
 
             <a class="btn btn-default" type="button" href="../view/index.php"> 목록으로 돌아가기 </a>
